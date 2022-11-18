@@ -12,15 +12,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UrlType1 {
+public class Url {
 	
 	@Id @GeneratedValue
 	private Long id;
 	
-	@Column(length = 255, nullable = false)
+	@Column(length = 2083, nullable = false)
 	private String originalURL;
 
-	public UrlType1(String originalURL) {
+	public Url(String originalURL) {
 		this.originalURL = originalURL;
 	}
 	
