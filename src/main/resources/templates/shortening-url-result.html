@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<label for ="url">짧은 URL = </label>
+<a id="url" th:href="@{${urlDto.shortUrl}}" th:text="${urlDto.shortUrl}"></a>
+<button th:onclick="|location.href='@{/home}'|">변환 홈으로</button>
+</body>
+</html>

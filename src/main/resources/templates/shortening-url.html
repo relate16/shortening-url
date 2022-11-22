@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="https://thymeleaf.org">
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<form action="" th:object="">
-	<input type="text" placeholder="¿øº» urlÀ» ÀÔ·ÂÇÏ¼¼¿ä" />
-	<input type="submit" value="º¯È¯">
-</form>
+<form action="/url/encode" th:object="${urlDto}" method="post">
+	<label for ="url">URL ë³€í™˜ : </label>
+	<input type="text" id="url" placeholder="ì›ë³¸ urlì„ ìž…ë ¥í•˜ì„¸ìš”" th:field="*{originalUrl}" />
+	<input type="submit" value="ë³€í™˜">
+</form> 
 </body>
 </html>
