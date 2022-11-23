@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="https://thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{#{shortening-url-result.css}}">
 </head>
 <body>
-
-<label for ="url">짧은 URL = </label>
-<a id="url" th:href="@{${urlDto.shortUrl}}" th:text="${urlDto.shortUrl}"></a>
-<button th:onclick="|location.href='@{/home}'|">변환 홈으로</button>
+	<header th:replace="~{fragments/header :: header}"></header>
+	<nav th:replace="~{fragments/nav :: nav}"></nav>
+	<div id="container">
+		<label id="urlLabel" for ="url">짧은 URL = </label>
+		<a id="url" th:href="@{${urlDto.shortUrl}}" th:text="${urlDto.shortUrl}"></a>
+		<button th:onclick="|location.href='@{/home}'|">변환 홈으로</button>
+	</div>
 </body>
-</html>

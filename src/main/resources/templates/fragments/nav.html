@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<nav th:fragment="nav">
+	  <a th:href="@{#{controller.path.home}}">Home</a>
+	  <a th:href="@{#{controller.path.board-list}}">변환된 DB 정보</a>
+	  <a href="#">1</a>
+	  <a href="#">2</a>
+	  <a href="#">3</a>
+	  <div class="animation start-home"></div>
+	</nav>
+
+</body>
+</html>

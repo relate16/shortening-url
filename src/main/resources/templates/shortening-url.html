@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="https://thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{#{shortening-url.css}}">
 </head>
 <body>
-<form action="/url/encode" th:object="${urlDto}" method="post">
-	<label for ="url">URL 변환 : </label>
-	<input type="text" id="url" placeholder="원본 url을 입력하세요" th:field="*{originalUrl}" />
-	<input type="submit" value="변환">
-</form> 
+	<header th:replace="~{fragments/header :: header}"></header>
+	<nav th:replace="~{fragments/nav :: nav}"></nav>
+	<div th:replace="~{fragments/center :: container}">test</div>
+	<p>
+	  By <span>Patak</span>
+	</p>
 </body>
 </html>
+
+<!-- Copyright (c) 2022 by Patak (https://codepen.io/Patak/pen/QpLpOV) -->

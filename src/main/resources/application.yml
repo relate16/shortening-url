@@ -12,7 +12,11 @@ spring:
     properties:   
       hibernate:
         format_sql: true
+      
+  messages:
+    basename: messages
 
 logging:
   level:
     org.hibernate.SQL: debug
+   

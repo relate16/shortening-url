@@ -18,10 +18,10 @@ public class Url {
 	private Long id;
 	
 	@Column(length = 2083, nullable = false)
-	private String originalURL;
+	private String originalUrl;
 
 	public Url(String originalURL) {
-		this.originalURL = originalURL;
+		this.originalUrl = originalURL;
 	}
 	
 

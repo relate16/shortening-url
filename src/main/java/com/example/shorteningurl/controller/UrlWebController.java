@@ -26,7 +26,7 @@ public class UrlWebController {
 	
 	/**
 	 * Post매핑인 encodingURL 메서드로 결과창을 띄워버리면
-	 * 결과창 새로 고침시, 같은 주소 = "/url/encode"를 get방식으로 받기 때문에
+	 * 고객이 새로고침시, 같은 주소 = "/url/encode"를 get방식으로 받기 때문에
 	 * 405 오류가 떠서 불편함이 있다.
 	 * 따라서 PRG, 즉 redirect 방식 도입해서 썼다.
 	 * @variable resultUrlDto : 
@@ -35,10 +35,10 @@ public class UrlWebController {
 	@PostMapping("/url/encode")
 	public String encodingURL(@ModelAttribute UrlDto urlDto, Model model) throws Exception {
 		String result = urlService.validateUrl(urlDto.getOriginalUrl());
-		log.info("result={}", result);
+
 		if(result.equals("접속 가능한 url이 아닙니다.")) {
 			model.addAttribute("message", "접속 가능한 url이 아닙니다.");
-			return "alert";
+			return "alert/alert";
 		}
 		
 		Long urlId = urlService.saveUrl(urlDto.getOriginalUrl());
@@ -62,8 +62,9 @@ public class UrlWebController {
 
 
 	/**
-	 * @method pathResolver @return
-	 * return "redirect:{originalUrl}"; 일 경우 
+	 * @method resolvePath 를 쓰는 이유 :
+	 * 현재 메서드 decodingURL에서 
+	 * return "redirect:" + originalUrl; 으로 쓴다고 가정할 때,
 	 * originalUrl이 https://www.naver.com 처럼 full경로이면 
 	 * 제대로 네이버 홈페이지에 접속하지만 
 	 * originalUrl이 www.naver.com 으로 들어왔을 경우

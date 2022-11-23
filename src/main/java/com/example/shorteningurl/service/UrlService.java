@@ -77,7 +77,7 @@ public class UrlService {
 		Long resultId = getUrlId(shortUrl);
 		Url url = getUrl(resultId);
 		
-		return url.getOriginalURL();
+		return url.getOriginalUrl();
 	}
 
 	public Url getUrl(Long urlId) {

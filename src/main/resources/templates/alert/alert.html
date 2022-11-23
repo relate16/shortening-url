@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
@@ -11,7 +11,7 @@
         const message = "[[${message}]]";
         var msg = [];
         alert(message);
-        location.href = "/home";
+        location.href = "[[#{controller.path.home}]]";
     })
 </script>
 </body>

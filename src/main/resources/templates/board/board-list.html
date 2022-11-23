@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{#{board-list.css}}">
+	<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="~{fragments/header :: header}"></header>
+	<nav th:replace="~{fragments/nav :: nav}"></nav>
+	<table id="products" summary="창수가 사고 싶은 물건들을 번호, 카테고리, 제품, 가격별로 제공한 표">
+	  <caption>사용자가 변환 시도한 url 목록</caption>
+	  <thead>
+	    <tr>
+	      <th scope="col">No.</th>
+	      <th scope="col">원본 URL</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr th:each="data : ${datas}">
+	      <td th:text="${data.id}">id</td>
+	      <td th:text="${data.originalUrl}">originalURL</td>
+	
+	     </tr>
+	  </tbody>
+	</table>
+  
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+<script th:src="#{board-list.js}"></script>
+</body>
+</html>
+
+<!-- Copyright (c) 2022 by Han Changsu (https://codepen.io/hcs1105/pen/dyzBBQ) -->
