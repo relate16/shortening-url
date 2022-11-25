@@ -1,8 +1,7 @@
 package com.example.shorteningurl.controller;
 
-import java.net.URL;
+import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.validator.internal.constraintvalidators.hv.URLValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UrlWebController {
 	
 	private final UrlService urlService;
-	private final String sitePath = "localhost:8080/";
+	private String sitePath = "";
 	
 	/**
 	 * Post매핑인 encodingURL 메서드로 결과창을 띄워버리면
@@ -33,7 +32,9 @@ public class UrlWebController {
 	 * 		resultUrlDto.shortUrl = "localhost:8080/{shorUrl}"
 	 */
 	@PostMapping("/url/encode")
-	public String encodingURL(@ModelAttribute UrlDto urlDto, Model model) throws Exception {
+	public String encodingURL(@ModelAttribute UrlDto urlDto, Model model, HttpServletRequest request) throws Exception {
+		sitePath = request.getHeader("host") + "/";
+		
 		String result = urlService.validateUrl(urlDto.getOriginalUrl());
 
 		if(result.equals("접속 가능한 url이 아닙니다.")) {
@@ -54,9 +55,23 @@ public class UrlWebController {
 	}
 	
 
+	/**
+	 * Request Host가 localhost:8080 일 경우,
+	 * @throws InterruptedException 
+	 * @variable hostPath = localhost:8080/
+	 * @variable resolvedPath = //localhost:8080/
+	 * @variable fullPath = //localhost:8080/C
+	 * @variable model.urlDto.shortUrl=//localhost:8080/C
+	 */
 	@GetMapping("/result")
-	public String postHome(@ModelAttribute UrlDto urlDto) {
-
+	public String showEncodingURL(@ModelAttribute UrlDto urlDto, HttpServletRequest request, Model model) {
+		String hostPath = request.getHeader("host") + "/";
+		String resolvedPath = resolvePath(hostPath);
+		String fullPath = resolvedPath + urlDto.getShortUrl();
+		
+		urlDto.setShortUrl(fullPath);
+		
+		model.addAttribute("urlDto", urlDto);
 		return "shortening-url-result";
 	}
 
@@ -99,6 +114,8 @@ public class UrlWebController {
 	 * https://www.naver.com과 같이 fullPath가 아닐 경우
 	 * (예: www.naver.com)
 	 * //www.naver.com 으로 경로를 설정해주는 메서드
+	 * 
+	 * 이 메서드를 쓰는 이유는 현재 클래스의 decodingURL 메서드에 자세히 설명되어 있다.
 	 */
 	private String resolvePath(String originalUrl) {
 		if(!originalUrl.contains("://")) {

@@ -4,6 +4,10 @@ spring:
     username: sa
     password:
     dirver-class-name: org.h2.Driver
+    hikari:
+      maximum-pool-size: 40
+      idle-timeout: 10000
+      initializationFailTimeout: 0
 
   jpa:
     hibernate:
@@ -12,9 +16,20 @@ spring:
     properties:   
       hibernate:
         format_sql: true
-      
+        
+#server:
+#  tomcat:
+#    threads:
+#      max: 20
+#      min-spare: 20 
+#    accept-count: 5
+#    connection-timeout: 5000 
+        
+        
   messages:
     basename: messages
+    
+
 
 logging:
   level:

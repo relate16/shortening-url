@@ -1,7 +1,5 @@
 package com.example.shorteningurl.dto;
 
-import org.hibernate.validator.constraints.URL;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,9 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UrlDto {
 	
-	Long id;
-	String originalUrl;
-	String shortUrl;
+	private Long id;
+	private String originalUrl;
+	private String shortUrl;
 	
 	public UrlDto(Long id, String originalUrl) {
 		super();

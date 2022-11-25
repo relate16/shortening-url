@@ -6,7 +6,6 @@ import java.net.URL;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.shorteningurl.entity.Url;
 import com.example.shorteningurl.repository.UrlRepository;
@@ -15,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
 public class UrlService {
@@ -24,11 +22,17 @@ public class UrlService {
 
 	private final UrlRepository urlRepository;
 
-	@Transactional
 	public Long saveUrl(String originalUrl) {
 		Url urlType1 = new Url(originalUrl);
 		Url saveUrlType1 = urlRepository.save(urlType1);
 		return saveUrlType1.getId();
+	}
+	
+	public Long deleteUrl(Long urlId) {
+		Optional<Url> findUrl = urlRepository.findById(urlId);
+		Url url = findUrl.orElseThrow(() -> new RuntimeException("해당 url이 없습니다."));
+		urlRepository.delete(url);
+		return url.getId();
 	}
 	
 	/**

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.shorteningurl.dto.UrlDto;
 import com.example.shorteningurl.entity.Url;
@@ -13,7 +12,6 @@ import com.example.shorteningurl.repository.UrlRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@Transactional(readOnly=false)
 @RequiredArgsConstructor
 public class UrlDtoService {
 	
