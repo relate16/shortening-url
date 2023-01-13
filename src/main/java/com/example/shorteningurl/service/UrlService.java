@@ -37,12 +37,10 @@ public class UrlService {
 	
 	/**
 	 * Url이 정상 접속 가능한지 확인하는 메서드
-	 * https://www.naver.com 처럼 fullPathUrl인 경우가 아니라면 (예: www.naver.com)
+	 * originalUrl이
+	 * https://www.naver.com 처럼 fullPathUrl인 경우가 아니라
+	 * www.naver.com처럼 들어왔을 경우
 	 * "https://" + "www.naver.com" 으로 fullPath를 만들고 나서 접속가능한지 확인하게 하였다.
-	 * 
-	 * @class Url url = new URL(path) :
-	 * 	정상 url 연결인지 확인하려면 try{.. int responseCode = connection.getResponseCode();.. }
-	 * 	까지 메서드를 호출해야 정상 url이 아닐 경우 exception이 터진다.
 	 */
 	public String validateUrl(String originalUrl) {
 		String fullOriginalUrl = "";

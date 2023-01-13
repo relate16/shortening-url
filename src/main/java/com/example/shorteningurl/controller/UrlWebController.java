@@ -57,7 +57,6 @@ public class UrlWebController {
 
 	/**
 	 * Request Host가 localhost:8080 일 경우,
-	 * @throws InterruptedException 
 	 * @variable hostPath = localhost:8080/
 	 * @variable resolvedPath = //localhost:8080/
 	 * @variable fullPath = //localhost:8080/C
